@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    entrypoint: npm start
+    build:
+      target: dependencies
+      args:
+        - NODE_ENV=development
+        - REACT_APP_ENV=${APP_ENVIRONMENT:-dev}
+        - NODE_OPTIONS="--max-old-space-size=4096"
+    volumes:
+      - ../app:/usr/src/app
+      - /usr/src/app/node_modules
+
